@@ -4,7 +4,7 @@ import {
   InvalidParamError,
   ServerError
 } from '../errors'
-import { IEmailValidator } from '../protocols/email-validator'
+import { IEmailValidator } from '../protocols'
 
 interface SutTypes {
   sut: SignUpController
