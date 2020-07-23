@@ -4,7 +4,7 @@ import {
   IController,
   IEmailValidator,
   IAddAccount
-} from '../signup/signup-protocols'
+} from './signup-protocols'
 import {
   MissingParamError,
   InvalidParamError
