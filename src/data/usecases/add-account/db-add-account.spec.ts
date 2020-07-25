@@ -1,14 +1,14 @@
 import { DbAddAccount } from './db-add-account'
 import {
-  IEncrypter,
-  IAddAccountModel,
-  IAccountModel,
-  IAddAccountRepository
+  Encrypter,
+  AddAccountModel,
+  AccountModel,
+  AddAccountRepository
 } from './db-add-account-protocols'
 
-const makeAddAccountRepository = (): IAddAccountRepository => {
-  class AddAccountRepositoryStub implements IAddAccountRepository {
-    async add (accountData: IAddAccountModel): Promise<IAccountModel> {
+const makeAddAccountRepository = (): AddAccountRepository => {
+  class AddAccountRepositoryStub implements AddAccountRepository {
+    async add (accountData: AddAccountModel): Promise<AccountModel> {
       const fakeAccount = {
         id: 'valid_id',
         name: 'valid_name',
@@ -21,8 +21,8 @@ const makeAddAccountRepository = (): IAddAccountRepository => {
   return new AddAccountRepositoryStub()
 }
 
-const makeEncrypter = (): IEncrypter => {
-  class EncrypterStub implements IEncrypter {
+const makeEncrypter = (): Encrypter => {
+  class EncrypterStub implements Encrypter {
     async encrypt (value: string): Promise<string> {
       return new Promise(resolve => resolve('hashed_password'))
     }
@@ -32,8 +32,8 @@ const makeEncrypter = (): IEncrypter => {
 
 interface SutTypes {
   sut: DbAddAccount
-  encrypterStub: IEncrypter
-  addAccountRepositoryStub: IAddAccountRepository
+  encrypterStub: Encrypter
+  addAccountRepositoryStub: AddAccountRepository
 }
 
 const makeSut = (): SutTypes => {
